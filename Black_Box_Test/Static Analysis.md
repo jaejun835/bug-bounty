@@ -74,7 +74,7 @@ unzip -l xapk_extracted/config.arm64_v8a.apk | sort -k1 -n -r | head -20
 ```
 ### 분석결과 
 
-#### .NET MAUI
+#### - .NET MAUI
 
 lib 폴더에 libmonodroid.so 와 libmonosgen-2.0.so 가 존재하고, Microsoft.Maui 가 들어간 어셈블리 파일이 존재할 경우 .NET MAUI 앱이다  
 앱 코드는 .NET 어셈블리 안에 있으므로 어셈블리를 꺼내서 ILSpy 로 분석한다  
