@@ -50,34 +50,22 @@ for f in xapk_extracted/*.apk; do echo "== $f"; apksigner verify --print-certs "
 # 압축 파일 종류
 
 ### <패키지 경로>.apk
-기본 APK 다
-앱 코드인 dex 파일, 설정 파일 AndroidManifest.xml, 공통 리소스가 들어 있다
-API 주소와 인증 흐름을 찾는 주 분석 대상이다
-서명 검증 통과
+기본 APK로 앱 코드인 dex 파일, 설정 파일 AndroidManifest.xml, 공통 리소스가 들어 있다.
+API 주소와 인증 흐름을 찾는 주 분석 대상이다.
 
-config.arm64_v8a.apk
+### config.arm64_v8a.apk
+arm64 기기용 네이티브 라이브러리 분할 APK로 C, C++ 등으로 컴파일된 .so 파일이 들어 있다.
+일반 앱치고 매우 커서, 프레임워크 앱이라면 앱 로직이 여기 있을 수 있다. 
 
-약 153 MB, arm64 기기용 네이티브 라이브러리 분할 APK 다
-C, C++ 등으로 컴파일된 .so 파일이 들어 있다
-일반 앱치고 매우 커서, 프레임워크 앱이라면 앱 로직이 여기 있을 수 있다. 아직 미확인이다
-서명 검증 통과
+### config.hdpi.apk
+고해상도 화면용 이미지 리소스 분할 APK로 API 분석과는 관련이 거의 없다
 
-config.hdpi.apk
+### config.en.apk
+영어 문자열 리소스 분할 APK로 화면 문구 외에 설정용 문자열이 섞여 있을 수 있어 가볍게 확인할 가치는 있다
 
-약 3 MB, 고해상도 화면용 이미지 리소스 분할 APK 다
-API 분석과는 관련이 거의 없다
-서명 검증 통과
-
-config.en.apk
-
-약 95 KB, 영어 문자열 리소스 분할 APK 다
-화면 문구 외에 설정용 문자열이 섞여 있을 수 있어 가볍게 확인할 가치는 있다
-서명 검증 통과
-
-manifest.json
-
-약 1 KB, APKPure 가 만든 XAPK 묶음 정보다. 앱의 일부가 아니다
+### manifest.json
+APKPure 가 만든 XAPK 묶음 정보로 앱과는 무관하다.
 패키지 이름, 버전 30.0.1, 버전 코드 2030000100, 최소 SDK 26, 타깃 SDK 36, 권한 목록, 분할 목록이 들어 있다
-APKPure 가 쓴 파일이라 서명 대상이 아니다. 확정값은 기본 APK 안의 AndroidManifest.xml 로 다시 확인해야 한다
+APKPure 가 쓴 파일이라 서명 대상이 아니며 확정값은 기본 APK 안의 AndroidManifest.xml 로 다시 확인해야 한다
 
 
