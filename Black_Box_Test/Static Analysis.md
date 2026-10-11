@@ -19,5 +19,5 @@ curl -sSL -o apkeep https://github.com/EFForg/apkeep/releases/latest/download/ap
 chmod +x apkeep
 
 # apkeep 실행
-./apkeep -a com.infomil.leclercdrive .
+./apkeep -d apk-pure -o 'acknowledge_dangers=true' -a <package_name> .
 ```
