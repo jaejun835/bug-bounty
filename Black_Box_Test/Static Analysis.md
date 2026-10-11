@@ -67,10 +67,45 @@ APKPure 가 만든 XAPK 묶음 정보로 앱과는 무관하다.
 패키지 이름, 버전 30.0.1, 버전 코드 2030000100, 최소 SDK 26, 타깃 SDK 36, 권한 목록, 분할 목록이 들어 있다  
 APKPure 가 쓴 파일이라 서명 대상이 아니며 확정값은 기본 APK 안의 AndroidManifest.xml 로 다시 확인해야 한다  
 
-##APK 파일 분석 방법
+## APK 파일 분석 방법
 ```
 # 네이티브 분할 APK 안에서 큰 파일 확인
 unzip -l xapk_extracted/config.arm64_v8a.apk | sort -k1 -n -r | head -20 
 ```
+### 분석결과 
 
+#### .NET MAUI
+
+lib 폴더에 libmonodroid.so 와 libmonosgen-2.0.so 가 존재하고, Microsoft.Maui 가 들어간 어셈블리 파일이 존재할 경우 .NET MAUI 앱이다
+앱 코드는 .NET 어셈블리 안에 있으므로 어셈블리를 꺼내서 ILSpy 로 분석한다
+어셈블리는 libassembly-store.so 안에 묶여 있거나 assemblies 폴더에 따로 있다
+
+#### Xamarin.Forms
+
+lib 폴더에 MAUI 와 같은 mono 계열 파일이 존재하지만, Microsoft.Maui 대신 Xamarin.Forms 어셈블리가 존재할 경우 Xamarin.Forms 앱이다
+분석 방법은 MAUI 와 같다
+
+#### Flutter
+
+lib 폴더에 libflutter.so 와 libapp.so 가 존재할 경우 Flutter 앱이다
+앱 코드는 libapp.so 에 기계어로 컴파일돼 있으므로 jadx 로는 거의 보이지 않는다
+
+#### React Native
+
+lib 폴더에 libhermes.so 나 libreactnativejni.so 가 존재하거나, assets 폴더에 index.android.bundle 이 존재할 경우 React Native 앱이다
+앱 코드는 JS 묶음 파일 안에 있으므로 그 파일을 분석한다
+
+#### Unity
+
+lib 폴더에 libunity.so 와 libil2cpp.so 가 존재하고, assets 폴더에 global-metadata.dat 가 존재할 경우 Unity 앱이다
+
+#### Cordova, Ionic, Capacitor
+
+assets 폴더 안에 www 폴더가 존재하고 그 안에 html 과 js 파일이 있을 경우 웹 기반 하이브리드 앱이다
+앱 코드는 웹 파일 그대로 들어 있으므로 바로 읽을 수 있다
+
+#### 일반 Java, Kotlin
+
+위의 특징 파일이 하나도 존재하지 않고 classes.dex 파일이 여러 개 크게 존재할 경우 일반 Java 나 Kotlin 앱이다
+앱 코드는 dex 파일 안에 있으므로 jadx 로 바로 분석한다
 
