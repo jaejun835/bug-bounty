@@ -18,6 +18,9 @@ curl -sSL -o apkeep https://github.com/EFForg/apkeep/releases/latest/download/ap
 # 권한 부여
 chmod +x apkeep
 
+# 버전 확인
+./apkeep -d apk-pure -l -a com.infomil.leclercdrive
+
 # apkeep 실행
-./apkeep -d apk-pure -o 'acknowledge_dangers=true' -a <package_name> .
+./apkeep -d apk-pure -o 'acknowledge_dangers=true' -a <패키지 이름>@<버젼 이름> .
 ```
