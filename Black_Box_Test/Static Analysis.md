@@ -47,7 +47,7 @@ apksigner verify --print-certs <apk_file> # 오류 없이 인증서 정보만 �
 for f in xapk_extracted/*.apk; do echo "== $f"; apksigner verify --print-certs "$f" | grep -E "Signer #1 certificate SHA-256|Source Stamp Signer certificate SHA-256"; done # 네 파일 모두 Signer 지문이 같으면 묶음 전체가 같은 출처다
 
 # 압축 파일 종류
-<!--
+/*
 <패키지 경로>.apk
 기본 APK로 앱 코드인 dex 파일, 설정 파일 AndroidManifest.xml, 공통 리소스가 들어 있다.  
 API 주소와 인증 흐름을 찾는 주 분석 대상이다.  
@@ -66,7 +66,7 @@ manifest.json
 APKPure 가 만든 XAPK 묶음 정보로 앱과는 무관하다.  
 패키지 이름, 버전 30.0.1, 버전 코드 2030000100, 최소 SDK 26, 타깃 SDK 36, 권한 목록, 분할 목록이 들어 있다  
 APKPure 가 쓴 파일이라 서명 대상이 아니며 확정값은 기본 APK 안의 AndroidManifest.xml 로 다시 확인해야 한다  
--->
+*/
 ```
 
 APK 파일 분석 방법:
