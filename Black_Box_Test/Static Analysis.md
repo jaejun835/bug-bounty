@@ -22,5 +22,5 @@ chmod +x apkeep
 ./apkeep -d apk-pure -l -a com.infomil.leclercdrive
 
 # apkeep 실행
-./apkeep -d apk-pure -o 'acknowledge_dangers=true' -a <패키지 이름>@<버젼 이름> .
+./apkeep -d apk-pure -o 'acknowledge_dangers=true' -a <패키지 이름>@<버젼 번호> .
 ```
