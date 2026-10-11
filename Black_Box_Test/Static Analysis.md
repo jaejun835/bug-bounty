@@ -43,16 +43,14 @@ mkdir -p <생성 경로>
 unzip -o '<apkeep 파일>' -d <생성 경로>
 
 # APK 서명이 유효한지 검사(악성 파일 가능성 존재하기 때문)
-apksigner verify --print-certs <apk_file>
-# 오류 없이 인증서 정보만 나왔다는 건 앱 내용이 서명된 뒤로 바뀌지 않았다는 뜻
-for f in xapk_extracted/*.apk; do echo "== $f"; apksigner verify --print-certs "$f" | grep -E "Signer #1 certificate SHA-256|Source Stamp Signer certificate SHA-256"; done
-# 네 파일 모두 Signer 지문이 같으면 묶음 전체가 같은 출처다
+apksigner verify --print-certs <apk_file> # 오류 없이 인증서 정보만 나왔다는 건 앱 내용이 서명된 뒤로 바뀌지 않았다는 뜻
+for f in xapk_extracted/*.apk; do echo "== $f"; apksigner verify --print-certs "$f" | grep -E "Signer #1 certificate SHA-256|Source Stamp Signer certificate SHA-256"; done # 네 파일 모두 Signer 지문이 같으면 묶음 전체가 같은 출처다
 ```
 
 # 압축 파일 종류
-com.infomil.leclercdrive.apk
 
-약 38 MB, 기본 APK 다
+### <패키지 경로>.apk
+기본 APK 다
 앱 코드인 dex 파일, 설정 파일 AndroidManifest.xml, 공통 리소스가 들어 있다
 API 주소와 인증 흐름을 찾는 주 분석 대상이다
 서명 검증 통과
