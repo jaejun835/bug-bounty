@@ -68,4 +68,10 @@ APKPure 가 만든 XAPK 묶음 정보로 앱과는 무관하다.
 패키지 이름, 버전 30.0.1, 버전 코드 2030000100, 최소 SDK 26, 타깃 SDK 36, 권한 목록, 분할 목록이 들어 있다  
 APKPure 가 쓴 파일이라 서명 대상이 아니며 확정값은 기본 APK 안의 AndroidManifest.xml 로 다시 확인해야 한다  
 
+APK 파일 분석 방법:
+```
+# 네이티브 분할 APK 안에서 큰 파일 확인
+unzip -l xapk_extracted/config.arm64_v8a.apk | sort -k1 -n -r | head -20
+```
+
 
