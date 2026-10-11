@@ -48,21 +48,21 @@ for f in xapk_extracted/*.apk; do echo "== $f"; apksigner verify --print-certs "
 ```
 ### 압축 파일 종류
 
-#### <패키지 경로>.apk
+#### - <패키지 경로>.apk
 기본 APK로 앱 코드인 dex 파일, 설정 파일 AndroidManifest.xml, 공통 리소스가 들어 있다.  
 API 주소와 인증 흐름을 찾는 주 분석 대상이다.  
 
-#### config.arm64_v8a.apk
+#### - config.arm64_v8a.apk
 arm64 기기용 네이티브 라이브러리 분할 APK로 C, C++ 등으로 컴파일된 .so 파일이 들어 있다.  
 일반 앱치고 매우 커서, 프레임워크 앱이라면 앱 로직이 여기 있을 수 있다.   
 
-#### config.hdpi.apk
+#### - config.hdpi.apk
 고해상도 화면용 이미지 리소스 분할 APK로 API 분석과는 관련이 거의 없다  
 
-#### config.en.apk
+#### - config.en.apk
 영어 문자열 리소스 분할 APK로 화면 문구 외에 설정용 문자열이 섞여 있을 수 있어 가볍게 확인할 가치는 있다  
 
-#### manifest.json
+#### - manifest.json
 APKPure 가 만든 XAPK 묶음 정보로 앱과는 무관하다.  
 패키지 이름, 버전 30.0.1, 버전 코드 2030000100, 최소 SDK 26, 타깃 SDK 36, 권한 목록, 분할 목록이 들어 있다  
 APKPure 가 쓴 파일이라 서명 대상이 아니며 확정값은 기본 APK 안의 AndroidManifest.xml 로 다시 확인해야 한다  
@@ -80,31 +80,31 @@ lib 폴더에 libmonodroid.so 와 libmonosgen-2.0.so 가 존재하고, Microsoft
 앱 코드는 .NET 어셈블리 안에 있으므로 어셈블리를 꺼내서 ILSpy 로 분석한다  
 어셈블리는 libassembly-store.so 안에 묶여 있거나 assemblies 폴더에 따로 있다  
 
-#### Xamarin.Forms
+#### - Xamarin.Forms
 
 lib 폴더에 MAUI 와 같은 mono 계열 파일이 존재하지만, Microsoft.Maui 대신 Xamarin.Forms 어셈블리가 존재할 경우 Xamarin.Forms 앱이다  
 분석 방법은 MAUI 와 같다  
 
-#### Flutter
+#### - Flutter
 
 lib 폴더에 libflutter.so 와 libapp.so 가 존재할 경우 Flutter 앱이다  
 앱 코드는 libapp.so 에 기계어로 컴파일돼 있으므로 jadx 로는 거의 보이지 않는다  
 
-#### React Native
+#### - React Native
 
 lib 폴더에 libhermes.so 나 libreactnativejni.so 가 존재하거나, assets 폴더에 index.android.bundle 이 존재할 경우 React Native 앱이다  
 앱 코드는 JS 묶음 파일 안에 있으므로 그 파일을 분석한다  
 
-#### Unity
+#### - Unity
 
 lib 폴더에 libunity.so 와 libil2cpp.so 가 존재하고, assets 폴더에 global-metadata.dat 가 존재할 경우 Unity 앱이다  
 
-#### Cordova, Ionic, Capacitor
+#### - Cordova, Ionic, Capacitor
 
 assets 폴더 안에 www 폴더가 존재하고 그 안에 html 과 js 파일이 있을 경우 웹 기반 하이브리드 앱이다  
 앱 코드는 웹 파일 그대로 들어 있으므로 바로 읽을 수 있다  
 
-#### 일반 Java, Kotlin
+#### - 일반 Java, Kotlin
 
 위의 특징 파일이 하나도 존재하지 않고 classes.dex 파일이 여러 개 크게 존재할 경우 일반 Java 나 Kotlin 앱이다  
 앱 코드는 dex 파일 안에 있으므로 jadx 로 바로 분석한다  
